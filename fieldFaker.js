@@ -1,6 +1,6 @@
 import faker from "faker";
 
-export const FieldKeys = Object.freeze({
+export const FieldTags = Object.freeze({
     //geo
     city: "city",
     state: "state",
@@ -9,7 +9,7 @@ export const FieldKeys = Object.freeze({
     addressLine2: "addressLine2",
     longitude: "longitude",
     latitude: "latitude",
-    //
+    // personal
     birthday: "birthday",
     firstName: "firstName",
     lastName: "lastName",
@@ -63,39 +63,39 @@ const generateFisingEvent = () => {
 
 export const fieldFakerMap = Object.freeze({
     // geo
-    [FieldKeys.city]:  faker.address.city,
-    [FieldKeys.state]:  faker.address.state,
-    [FieldKeys.zipCode]:  faker.address.zipCode,
-    [FieldKeys.addressLine1]:  faker.address.streetAddress,
-    [FieldKeys.addressLine2]: faker.address.secondaryAddress,
-    [FieldKeys.longitude]: faker.address.longitude,
-    [FieldKeys.latitude]: faker.address.latitude,
+    [FieldTags.city]:  faker.address.city,
+    [FieldTags.state]:  faker.address.state,
+    [FieldTags.zipCode]:  faker.address.zipCode,
+    [FieldTags.addressLine1]:  faker.address.streetAddress,
+    [FieldTags.addressLine2]: faker.address.secondaryAddress,
+    [FieldTags.longitude]: faker.address.longitude,
+    [FieldTags.latitude]: faker.address.latitude,
     //
-    [FieldKeys.birthday]: faker.date.past,
-    [FieldKeys.firstName]: faker.name.firstName,
-    [FieldKeys.lastName]: faker.name.lastName,
-    [FieldKeys.email]: faker.internet.email,
+    [FieldTags.birthday]: faker.date.past,
+    [FieldTags.firstName]: faker.name.firstName,
+    [FieldTags.lastName]: faker.name.lastName,
+    [FieldTags.email]: faker.internet.email,
     /* image of pwetty aminals */
-    [FieldKeys.imageAnimals]: faker.image.animals,
+    [FieldTags.imageAnimals]: faker.image.animals,
     /* image of a person */
-    [FieldKeys.imagePerson]: faker.image.people,
+    [FieldTags.imagePerson]: faker.image.people,
     /* Image of nature stuffs */
-    [FieldKeys.imageNature]: faker.image.nature,
-    [FieldKeys.serialId]: () => Math.floor(Math.random() * 2000000000),
-    [FieldKeys.pastDate]: faker.date.past,
-    [FieldKeys.company]: faker.company.companyName,
-    [FieldKeys.phoneNumber]: () => `${randomIntFromInterval(100, 999)}${randomIntFromInterval(100, 999)}${randomIntFromInterval(1000, 9999)}`,
-    [FieldKeys.fiveStarRating]: () => randomIntFromInterval(1, 5),
+    [FieldTags.imageNature]: faker.image.nature,
+    [FieldTags.serialId]: () => Math.floor(Math.random() * 2000000000),
+    [FieldTags.pastDate]: () => faker.date.past().toISOString(),
+    [FieldTags.company]: faker.company.companyName,
+    [FieldTags.phoneNumber]: () => `${randomIntFromInterval(100, 999)}${randomIntFromInterval(100, 999)}${randomIntFromInterval(1000, 9999)}`,
+    [FieldTags.fiveStarRating]: () => randomIntFromInterval(1, 5),
     // text
-    [FieldKeys.loremSentence]: faker.lorem.sentence,
-    [FieldKeys.productDescription]: faker.commerce.productDescription,
-    [FieldKeys.huntingEventTitle]: generateHuntingEvent,
-    [FieldKeys.fishingEventTitle]: generateFisingEvent,
-    [FieldKeys.outdoorEventTitle]: () => [generateFisingEvent(), generateHuntingEvent()][randomIntFromInterval(0, 1)],
+    [FieldTags.loremSentence]: faker.lorem.sentence,
+    [FieldTags.productDescription]: faker.commerce.productDescription,
+    [FieldTags.huntingEventTitle]: generateHuntingEvent,
+    [FieldTags.fishingEventTitle]: generateFisingEvent,
+    [FieldTags.outdoorEventTitle]: () => [generateFisingEvent(), generateHuntingEvent()][randomIntFromInterval(0, 1)],
 
     // numbers
-    [FieldKeys.between1and10]: () => randomIntFromInterval(1, 10),
-    [FieldKeys.price]: faker.commerce.price,
+    [FieldTags.between1and10]: () => randomIntFromInterval(1, 10),
+    [FieldTags.price]: faker.commerce.price,
     //
 
 });

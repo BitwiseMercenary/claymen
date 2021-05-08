@@ -1,7 +1,7 @@
 import fs from "fs";
 import path from "path";
 import { configProcessor } from "./configProcessor.js";
-import { FieldKeys } from "./fieldFaker.js";
+import { FieldTags } from "./fieldFaker.js";
 
 // Reduces all configs in an entire clay module into a single array;
 const reduceConfigs = (clayModule) => {
@@ -37,9 +37,5 @@ const createClaymen = async () => {
 
 export {
     createClaymen,
-    FieldKeys,
+    FieldTags,
 }
-// TODO: rename FieldKeys to "Tags"
-// consume schema mappings
-// map schema config to faker functions
-// generate fake data from mappinggs

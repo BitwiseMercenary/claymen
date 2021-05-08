@@ -1,5 +1,6 @@
 import * as cw from "csv-writer";
 import { fieldFakerMap } from "./fieldFaker.js";
+import path from "path";
 
 let depRegistryUnused = {};
 let depRegistryUsed = {};
@@ -78,5 +79,7 @@ export const configProcessor = (tableConfig) => {
         records.push(record);
     }
 
-    writeToCsv(`${tableName}.csv`, header, records);
+    const defaultOutputPath = path.resolve(path.dirname('')) + "/clayput";
+
+    writeToCsv(`${defaultOutputPath}/${tableName}.csv`, header, records);
 }
