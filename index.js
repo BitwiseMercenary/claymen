@@ -2,6 +2,7 @@ import fs from "fs";
 import path from "path";
 import { configProcessor } from "./configProcessor.js";
 import { FieldTags } from "./fieldFaker.js";
+import * as generators from "./generators/index.js";
 
 // Reduces all configs in an entire clay module into a single array;
 const reduceConfigs = (clayModule) => {
@@ -38,4 +39,5 @@ const createClaymen = async () => {
 export {
     createClaymen,
     FieldTags,
+    generators,
 }

@@ -1,4 +1,35 @@
 import faker from "faker";
+import {
+    generateAnimalPictureVaried,
+    generateAnimalPictureVariedWithId,
+    generateDate13DaysAgo,
+    generateDate21DaysAgo,
+    generateDateEightDaysAgo,
+    generateDateFiveDaysAgo,
+    generateDateOneDayAgo,
+    generateDateThreeDaysAgo,
+    generateDateTwoDaysAgo,
+    generateDbSerialId,
+    generateFishingEvent,
+    generateFiveStarRating,
+    generateFutureDate13Days,
+    generateFutureDate21Days,
+    generateFutureDateEightDays,
+    generateFutureDateFiveDays,
+    generateFutureDateOneDay,
+    generateFutureDateThreeDays,
+    generateFutureDateTwoDays,
+    generateHuntingEvent,
+    generateNaturePictureVaried,
+    generateNaturePictureVariedWithId,
+    generateNumberBetween1and10,
+    generateOutdoorEvent,
+    generateOutdoorPictureVariedWithId,
+    generatePastDate,
+    generatePersonPictureVaried,
+    generatePersonPictureVariedWithId,
+    generatePhoneNumber
+} from "./generators/index.js";
 
 export const FieldTags = Object.freeze({
     //geo
@@ -14,52 +45,46 @@ export const FieldTags = Object.freeze({
     firstName: "firstName",
     lastName: "lastName",
     email: "email",
-    /* image of pwetty aminals */
-    imageAnimals: "imageAnimals",
-    /* image of a person */
-    imagePerson: "imagePerson",
-    /* Image of nature stuffs */
-    imageNature: "imageNature",
     serialId: "serialId",
     pastDate: "pastDate",
     company: "company",
     phoneNumber: "phoneNumber",
     fiveStarRating: "fiveStarRating",
+    // media
+    imageAnimals: "imageAnimals",
+    imagePerson: "imagePerson",
+    imageNature: "imageNature",
+    imageAnimalsWithId: "imageAnimalsWithId",
+    imagePersonWithId: "imagePersonWithId",
+    imageNatureWithId: "imageNatureWithId",
+    imageOutdoorWithId: "imageOutdoorWithId",
     // text
     loremSentence: "loremSentence",
+    loremParagraph: "loremParagraph",
+    loremParagraphs: "loremParagraphs",
     productDescription: "productDescription",
     huntingEventTitle: "huntingEventTitle",
     fishingEventTitle: "fishingEventTitle",
     outdoorEventTitle: "outdoorEventTitle",
     // numbers
     between1and10: "between1and10",
-    price: "price"
-    //
+    price: "price",
+    // time
+    pastDate1Day: "pastDate1Day",
+    pastDate2Days: "pastDate2Days",
+    pastDate3Days: "pastDate3Days",
+    pastDate5Days: "pastDate5Days",
+    pastDate8Days: "pastDate8Days",
+    pastDate13Days: "pastDate13Days",
+    pastDate21Days: "pastDate21Days",
+    futureDate1Day: "futureDate1Day",
+    futureDate2Days: "futureDate2Days",
+    futureDate3Days: "futureDate3Days",
+    futureDate5Days: "futureDate5Days",
+    futureDate8Days: "futureDate8Days",
+    futureDate13Days: "futureDate13Days",
+    futureDate21Days: "futureDate21Days",
 })
-
-const randomIntFromInterval = (min, max) => { // min and max included
-    return Math.floor(Math.random() * (max - min + 1) + min);
-}
-
-
-const generateHuntingEvent = () => {
-    const animals = [faker.animal.bird(), faker.animal.rabbit(), faker.animal.bear(), faker.animal.crocodilia(), faker.animal.lion()];
-    const animal = animals[[randomIntFromInterval(0, animals.length - 1)]];
-    const adjective = ["Wild", "Peak Season", "Family", ""][randomIntFromInterval(0, 3)];
-    const eventType = ["Hunting", "Tracking", "Watching", "Glassing"][randomIntFromInterval(0, 3)];
-    const journeyNoun = ["Expedition", "Excursion", ""][randomIntFromInterval(0, 2)];
-
-    return `${adjective} ${animal} ${eventType} ${journeyNoun}`
-}
-
-const generateFisingEvent = () => {
-    const animal = faker.animal.fish();
-    const adjective = ["Wild", "Peak Season", "Family", ""][randomIntFromInterval(0, 3)];
-    const eventType = ["Fishing", "Tracking", "Catch And Release"][randomIntFromInterval(0, 2)];
-    const journeyNoun = ["Expedition", "Excursion", "Trip"][randomIntFromInterval(0, 2)];
-
-    return `${adjective} ${animal} ${eventType} ${journeyNoun}`;
-}
 
 export const fieldFakerMap = Object.freeze({
     // geo
@@ -75,27 +100,46 @@ export const fieldFakerMap = Object.freeze({
     [FieldTags.firstName]: faker.name.firstName,
     [FieldTags.lastName]: faker.name.lastName,
     [FieldTags.email]: faker.internet.email,
-    /* image of pwetty aminals */
-    [FieldTags.imageAnimals]: faker.image.animals,
-    /* image of a person */
-    [FieldTags.imagePerson]: faker.image.people,
-    /* Image of nature stuffs */
-    [FieldTags.imageNature]: faker.image.nature,
-    [FieldTags.serialId]: () => Math.floor(Math.random() * 2000000000),
-    [FieldTags.pastDate]: () => faker.date.past().toISOString(),
+    [FieldTags.serialId]: generateDbSerialId,
     [FieldTags.company]: faker.company.companyName,
-    [FieldTags.phoneNumber]: () => `${randomIntFromInterval(100, 999)}${randomIntFromInterval(100, 999)}${randomIntFromInterval(1000, 9999)}`,
-    [FieldTags.fiveStarRating]: () => randomIntFromInterval(1, 5),
+    [FieldTags.phoneNumber]: generatePhoneNumber,
+    [FieldTags.fiveStarRating]: generateFiveStarRating,
+    // media
+    [FieldTags.imageOutdoorWithId]: generateOutdoorPictureVariedWithId,
+    [FieldTags.imageAnimalsWithId]: generateAnimalPictureVariedWithId,
+    [FieldTags.imagePersonWithId]: generatePersonPictureVariedWithId,
+    [FieldTags.imageNatureWithId]: generateNaturePictureVariedWithId,
+    [FieldTags.imageAnimals]: generateAnimalPictureVaried,
+    [FieldTags.imagePerson]: generatePersonPictureVaried,
+    [FieldTags.imageNature]: generateNaturePictureVaried,
     // text
     [FieldTags.loremSentence]: faker.lorem.sentence,
+    [FieldTags.loremParagraph]: faker.lorem.paragraph,
+    [FieldTags.loremParagraphs]: faker.lorem.paragraphs,
     [FieldTags.productDescription]: faker.commerce.productDescription,
     [FieldTags.huntingEventTitle]: generateHuntingEvent,
-    [FieldTags.fishingEventTitle]: generateFisingEvent,
-    [FieldTags.outdoorEventTitle]: () => [generateFisingEvent(), generateHuntingEvent()][randomIntFromInterval(0, 1)],
+    [FieldTags.fishingEventTitle]: generateFishingEvent,
+    [FieldTags.outdoorEventTitle]: generateOutdoorEvent,
 
     // numbers
-    [FieldTags.between1and10]: () => randomIntFromInterval(1, 10),
+    [FieldTags.between1and10]: generateNumberBetween1and10,
     [FieldTags.price]: faker.commerce.price,
-    //
+
+    // time
+    [FieldTags.pastDate]: generatePastDate,
+    [FieldTags.pastDate1Day]: generateDateOneDayAgo,
+    [FieldTags.pastDate2Days]: generateDateTwoDaysAgo,
+    [FieldTags.pastDate3Days]: generateDateThreeDaysAgo,
+    [FieldTags.pastDate5Days]: generateDateFiveDaysAgo,
+    [FieldTags.pastDate8Days]: generateDateEightDaysAgo,
+    [FieldTags.pastDate13Days]: generateDate13DaysAgo,
+    [FieldTags.pastDate21Days]: generateDate21DaysAgo,
+    [FieldTags.futureDate1Day]: generateFutureDateOneDay,
+    [FieldTags.futureDate2Days]: generateFutureDateTwoDays,
+    [FieldTags.futureDate3Days]: generateFutureDateThreeDays,
+    [FieldTags.futureDate5Days]: generateFutureDateFiveDays,
+    [FieldTags.futureDate8Days]: generateFutureDateEightDays,
+    [FieldTags.futureDate13Days]: generateFutureDate13Days,
+    [FieldTags.futureDate21Days]: generateFutureDate21Days,
 
 });

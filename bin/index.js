@@ -1,3 +1,3 @@
-import {createClaymen} from "../index";
+import {createClaymen} from "../index.js";
 
 createClaymen();

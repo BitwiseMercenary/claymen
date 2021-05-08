@@ -30,7 +30,7 @@ export const configProcessor = (tableConfig) => {
         const record = {};
         // loop through each field config
         fields.forEach((fieldConfig) => {
-            const {name, fakeDataType, foreignDependency, isForeignParent, customGenerator } = fieldConfig;
+            const {name, fakeDataType, foreignDependency, isForeignDependency, customGenerator } = fieldConfig;
 
             if (amountCreated === 0) {
                 // extract headers on first iteration of outer loop
@@ -51,7 +51,7 @@ export const configProcessor = (tableConfig) => {
             }
 
             // if some other table depends on this field, register it globally for reuse
-            if(isForeignParent) {
+            if(isForeignDependency) {
                 depRegistryUnused[tableName+"."+name] = depRegistryUnused[tableName+"."+name] || []
                 depRegistryUnused[tableName+"."+name].push(record[name]);
             }
