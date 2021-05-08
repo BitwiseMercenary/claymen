@@ -1,0 +1,16 @@
+{
+  "name": "claymen",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Spartn117.RM@gmail.com",
+  "license": "ISC",
+  "dependencies": {
+    "csv-writer": "^1.6.0",
+    "faker": "^5.5.3"
+  }
+}
